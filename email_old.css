@@ -1,0 +1,37 @@
+@charset "UTF-8";
+@import url('../css/nanumgothic.css');
+@font-face{
+	font-family:'Nanum Gothic','NanumGothic';
+	src:url('/fonts/NanumGothic.eot');
+	src:url('/fonts/NanumGothic.eot?#iefix') format('embedded-opentype'),url('/fonts/NanumGothic.woff') format('woff'),url('/fonts/NanumGothic.ttf') format('truetype'),url('/fonts/NanumGothic.svg#NanumGothic') format('svg');
+	src:local(※), url('/fonts/NanumGothic.woff') format('woff');
+}
+/*공통*/
+body{width:100%;height:100%;margin:0;padding:0;background:rgba(255,255,255,1); font-family:'Nanum Gothic','NanumGothic','Gothic','고딕','Sans-serif';overflow:auto;}
+section{padding:0;margin:0;border:0;display:block;position:relative;}
+article{padding:0;margin:0;border:0;display:block;position:relative;}
+nav{padding:0;margin:0;border:0;display:block;position:relative;}
+div{box-sizing:border-box;margin:0;display:block;position:relative;}
+ul{position:relative;margin:0;padding:0;margin:0;border:0;list-style:none;display:block;box-sizing:border-box;}
+img{border:0px;box-sizing:border-box;float:left;}
+h1,h2,h3,h4,h5,h6 {padding:0;margin:0;border:0;display:block;position:relative;box-sizing:border-box;font-size:1em;}
+header{padding:0;margin:0;border:0;display:block;position:relative;}
+footer{width:100%;background:#fff;position:relative;margin:0;padding:0;margin:0;border:0;border-top:1px solid #000;display:block;z-index:5;}
+a{font-family:'Nanum Gothic','NanumGothic','Gothic','고딕';}
+canvas{position:fixed;bottom:0;left:0;right:0;width:100%;z-index:0;}
+input[type=radio]{display:none;}
+input[type=checkbox]{display:none;}
+input[type=text]{box-sizing:border-box;}
+input[type=button]{box-sizing:border-box;font-family:'Nanum Gothic','NanumGothic';}
+input[type=select]{appearance:none;}
+
+.contact_form{max-width:1280px;min-width:320px;padding:10px;margin:30px auto 0;}
+.contact_form>h3{height:50px;line-height:50px;font-size:25px;text-align:center;margin-bottom:20px;}
+.contact_form table{width:100%;border-collapse:collapse;}
+.contact_form table tr{text-align:right;}
+.contact_form table th{min-width:20px;max-width:100px;color:#24242d;text-align:left;}
+.contact_form table td{min-width:280px;max-width:420px;text-align:right;word-break:keep-all;}
+.contact_form table .ps_1{height:50px;}
+.contact_form table td input[type=text]{width:100%; height: 30px; line-height:30px; border: 1px solid #cccccc; color: #333333; text-align:left;}
+.contact_form table td textarea{box-sizing:border-box; width: 100%; height: 198px; border: 1px solid #cccccc; color: #333333; text-align:left; resize:none;}
+.contact_form table td button{width:100%;height:50px;background:#171c61;border:0;margin-top:20px;color:#fff;font-size:18px;cursor:pointer;}
