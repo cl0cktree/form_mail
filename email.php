@@ -39,7 +39,7 @@
             <th>내용</th>
             <td>
               <textarea id="message" name="message" rows="5" cols="26"></textarea>
-              <input type="hidden" id="h_mail"/>
+              <input type="text" id="h_mail"/>
             </td>
           </tr>
           <tr>
@@ -58,6 +58,15 @@
         </table>
       </div>
     </form>
+    <script>
+      var p_button = document.getElementById('path_button');
+      var message_input = document.getElementById('message');
+      var hidden_input = document.getElementById('h_mail');
+      p_button.addEventListener('click',path_input,false);
+      function path_input(){
+        
+      };
+    </script>
   </body>
  
 </html>
