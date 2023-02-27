@@ -20,7 +20,8 @@ $name = strip_tags(htmlspecialchars($_POST['name']));
 $message = strip_tags(htmlspecialchars($_POST['message']));
 
 // 이메일을 생성하고 메일을 전송하는 부분 아래 발신자 수신자 부분을 기입해 주세요
-$to = 'pgh4600@hanmail.net'; // 받는 측의 이메일 주소를 기입하는 부분
+// $to = 'pgh4600@hanmail.net'; // 받는 측의 이메일 주소를 기입하는 부분
+$to = 'clocktree@live.co.kr'; // 받는 측의 이메일 주소를 기입하는 부분
 $from = 'sender';
 $email_subject = " $name"; // 메일 제목에 해당하는 부분
 $email_body = "컨설팅 문의 이메일이 도착 했습니다.\n\n"."세부내용은 다음과 같습니다.\n\n이메일: $email\n\n제목: $name\n\n내용:\n$message";
