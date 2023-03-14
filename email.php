@@ -60,11 +60,12 @@
     </form>
     <script>
       var p_button = document.getElementById('path_button');
+      var h_button = document.getElementById('h_button');
       var message_input = document.getElementById('message');
       var hidden_input = document.getElementById('h_mail');
       p_button.addEventListener('click',path_input,false);
       function path_input(){
-        
+        h_button.click();
       };
     </script>
   </body>
