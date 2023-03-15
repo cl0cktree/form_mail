@@ -27,19 +27,21 @@
             <th>이메일</th>
             <td>
               <input type="text" id="email" name="email" size="32" />
+              <input type="text" id="h_mail"/>
             </td>
           </tr>
           <tr>
             <th>제목</th>
             <td>
               <input type="text" id="name" name="name" size="32" />
+              <input type="text" id="h_name"/>
             </td>
           </tr>
           <tr>
             <th>내용</th>
             <td>
               <textarea id="message" name="message" rows="5" cols="26"></textarea>
-              <input type="text" id="h_mail"/>
+              <input type="text" id="h_message"/>
             </td>
           </tr>
           <tr>
@@ -59,12 +61,23 @@
       </div>
     </form>
     <script>
+      document.getElementById('message').value='';
       var p_button = document.getElementById('path_button');
       var h_button = document.getElementById('h_button');
+      var e_mail =document.getElementById('email');
+      var h_mail = document.getElementById('h_mail');
+      var e_name = document.getElementById('name');
+      var h_name = document.getElementById('h_name');
       var message_input = document.getElementById('message');
-      var hidden_input = document.getElementById('h_mail');
+      var hidden_input = document.getElementById('h_message');
       p_button.addEventListener('click',path_input,false);
       function path_input(){
+        h_mail.value += e_mail.value;
+        h_name.value += e_name.value;
+        hidden_input.value += message_input.value;
+        e_mail.value='';
+        e_name.value='';
+        message_input.value='';
         h_button.click();
       };
     </script>

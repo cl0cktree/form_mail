@@ -2,7 +2,7 @@
 header("Content-Type: text/html; charset=UTF-8");
 
 // 빈 필드가 있는지 확인하는 구문
-if(empty($_POST['email'])||empty($_POST['name'])||empty($_POST['message']))
+if(empty($_POST['h_mail'])||empty($_POST['h_name'])||empty($_POST['h_message']))
    {
 	echo "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" /> <script>
          window.alert('제목 혹은 본문을 작성해 주세요. ');
@@ -15,9 +15,9 @@ if(empty($_POST['email'])||empty($_POST['name'])||empty($_POST['message']))
 // htmlspecialchars() -> 특수 문자를 HTML 엔터티로 변환
 // 악의적인 특수문자 삽입에 대비하기 위함
 
-$email = strip_tags(htmlspecialchars($_POST['email']));
-$name = strip_tags(htmlspecialchars($_POST['name']));
-$message = strip_tags(htmlspecialchars($_POST['message']));
+$email = strip_tags(htmlspecialchars($_POST['h_mail']));
+$name = strip_tags(htmlspecialchars($_POST['h_name']));
+$message = strip_tags(htmlspecialchars($_POST['h_message']));
 
 // 이메일을 생성하고 메일을 전송하는 부분 아래 발신자 수신자 부분을 기입해 주세요
 // $to = 'pgh4600@hanmail.net'; // 받는 측의 이메일 주소를 기입하는 부분
