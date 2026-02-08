@@ -25,10 +25,18 @@
         })();
     </script>
     <script>
+    //document.getElementById('message').value='';
+      var p_button = document.getElementById('path_button');
+      var h_button = document.getElementById('h_button');
+      var e_mail =document.getElementById('email');
+      var h_mail = document.getElementById('h_mail');
+      var e_name = document.getElementById('name');
+      var h_name = document.getElementById('h_name');
+      var message_input = document.getElementById('message');
+      var hidden_input = document.getElementById('h_message');      
+
         document.addEventListener("DOMContentLoaded", function(){
-        // document.getElementById('email').value='';
-        // document.getElementById('name').value='';
-        // document.getElementById('message').value='';
+        
             document.getElementById('mail_form').addEventListener('submit', function(event) {
                 event.preventDefault();
                 // these IDs from the previous steps
@@ -36,11 +44,16 @@
                     .then(() => {
                             // console.log('SUCCESS!');
                             alert('메일이 발송 되었습니다.');
+                            document.getElementById('email').value='';
+                            document.getElementById('name').value='';
+                            document.getElementById('title').value='';
+                            document.getElementById('message').value='';
                         }, (error) => {
                             // console.log('FAILED...', error);
                             alert('메일이 발송이 실패하였습니다.');
                         });
             });
+
         });
     </script>
     <form id="mail_form">
@@ -55,9 +68,16 @@
             </td>
           </tr>
           <tr>
-            <th>제목</th>
+            <th>보내는 사람</th>
             <td>
               <input type="text" id="name" name="name" size="32" required/>
+              <input type="hidden" id="h_name"/>
+            </td>
+          </tr>
+          <tr>
+            <th>제목</th>
+            <td>
+              <input type="text" id="title" name="title" size="128" required/>
               <input type="hidden" id="h_name"/>
             </td>
           </tr>
