@@ -16,7 +16,7 @@
   </head>
  
   <body>
-     <script type="text/javascript">
+    <script type="text/javascript">
         (function() {
             // https://dashboard.emailjs.com/admin/account
             emailjs.init({
@@ -72,6 +72,7 @@
                 p_button.click();
                 dimm_filter.classList.remove('on');
               };
+              popup_close.focus();
             };
             popup_close.addEventListener('click',function(){
               dimm_filter.classList.remove('on');
@@ -106,6 +107,7 @@
 
         });
     </script>
+    <div class="email_wrap" id="email_wrap">
     <form id="mail_form">
       <div class="contact_form" id="contact_form">
         <h3>이메일 문의</h3>
@@ -113,25 +115,25 @@
 		      <tr>
             <th>이메일</th>
             <td>
-              <input type="text" id="email" name="email" size="32" tabindex="1" placeholder="이메일 입력" aria-hidden="false" aria-label="이메일 입력" required/>
+              <input type="text" id="email" name="email" size="32" tabindex="0" placeholder="이메일 입력" aria-hidden="false" aria-label="이메일 입력" required/>
             </td>
           </tr>
           <tr>
             <th>보내는 사람</th>
             <td>
-              <input type="text" id="name" name="name" size="32" tabindex="2" placeholder="이름 입력" aria-hidden="false" aria-label="이름 입력" required/>
+              <input type="text" id="name" name="name" size="32" tabindex="0" placeholder="이름 입력" aria-hidden="false" aria-label="이름 입력" required/>
             </td>
           </tr>
           <tr>
             <th>제목</th>
             <td>
-              <input type="text" id="title" name="title" size="128" tabindex="3" placeholder="제목 입력" aria-hidden="false" aria-label="제목 입력" required/>
+              <input type="text" id="title" name="title" size="128" tabindex="0" placeholder="제목 입력" aria-hidden="false" aria-label="제목 입력" required/>
             </td>
           </tr>
           <tr>
             <th>내용</th>
             <td>
-              <textarea id="message" name="message" rows="5" cols="26" tabindex="4" placeholder="내용 입력" aria-hidden="false" aria-label="내용 입력" required></textarea>
+              <textarea id="message" name="message" rows="5" cols="26" tabindex="0" placeholder="내용 입력" aria-hidden="false" aria-label="내용 입력" required></textarea>
             </td>
           </tr>
           <tr>
@@ -139,7 +141,7 @@
           </tr>
           <tr>
              <td colspan="2" style="padding-top:20px;">
-              <button id="h_button" type="button" tabindex="5" aria-hidden="false" aria-label="문의하기 버튼" value="문의하기">
+              <button id="h_button" type="button" tabindex="0" aria-hidden="false" aria-label="문의하기 버튼" value="문의하기">
                 문의하기
               </button>
               <button id="path_button" type="submit" tabindex="-1" aria-hidden="true" aria-label="문의하기 버튼" value="문의하기">
@@ -159,6 +161,7 @@
             </button>
         </div>
     </div>
+  </div>
     <script>
     $(function(){
       document.getElementById('message').value='';
@@ -171,20 +174,29 @@
       var message_input = document.getElementById('message');
       var hidden_input = document.getElementById('h_message');
 
-      if(document.getElementById('mail_table')){
-          var conbox_contentswrap = document.getElementById('mail_table');
+      // var focus_content = 'a[href], area[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button, button:not([disabled]), submit, submit:not([disabled]), iframe, object, embed, *[tabindex], *[contenteditable]';
+      // var conbox_content = conbox_contentswrap.querySelectorAll(focus_content);
+      // var first_content = conbox_contentswrap.querySelectorAll(focus_content)[0];
+      // var last_content = conbox_contentswrap.querySelectorAll(focus_content)[conbox_content.length-1];
+      // var first_content_0 = conbox_contentswrap.querySelectorAll(focus_content)[0];
+
+      // first_content.focus();
+       $('.email_wrap').find('[tabindex]').eq(0).focus();
+
+      if(document.getElementById('email_wrap')){
+          var conbox_contentswrap = document.getElementById('email_wrap');
           // var filter_conbox_contentswrap = document.getElementById('filter-conbox-contentswrap');
           var all_filter_conbox = document.getElementById('all-filter-conbox');
           
           $('#all-filter-conbox').find('[tabindex]').attr('tabindex','0');
           $('#all-filter-conbox').find('[tabindex]').eq(0).focus();
           
-          $('#mail_table').on('keydown', function(e){
+          $('#email_wrap').on('keydown', function(e){
             console.log('email tabindex');
 
             var this_on_focus;
 
-            var con_range = $('.all-filter-conbox, .conbox-contents-view').find('.filter-title-closebtn, .filter-conbox-contentswrap').find('a[href], area[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button, button:not([disabled]), submit, submit:not([disabled]), iframe, object, embed, *[tabindex], *[contenteditable]');
+            var con_range = $('.all-filter-conbox, .conbox-contents-view').find('.filter-title-closebtn, .filter-conbox-contentswrap, .email_wrap').find('a[href], area[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button, button:not([disabled]), submit, submit:not([disabled]), iframe, object, embed, *[tabindex], *[contenteditable]');
             var con_first = con_range.eq(0);
             var con_last = con_range.eq(con_range.length-1);
             
@@ -198,14 +210,17 @@
 
             this_on_focus = document.activeElement;
             console.log('this_on_focus = '+this_on_focus);
-            if ((e.keyCode===9 && !e.shiftKey)&&(this_on_focus==last_content)) {
+            if ((e.keyCode===9)&&(this_on_focus==last_content)) {
               console.log('pop ride this_1');
-              first_content.focus();
+              // first_content.focus();
+              // last_content.focus();
+              e.preventDefault();
             }
             if((e.keyCode===9 && e.shiftKey)&&(this_on_focus==first_content)) {
               console.log('pop ride this_2');
-              // last_content.focus();
-              first_content.focus();
+              // first_content.focus();
+              last_content.focus();
+              e.preventDefault();
             }
             // e.preventDefault();
           });
