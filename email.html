@@ -141,10 +141,10 @@
           </tr>
           <tr>
              <td colspan="2" style="padding-top:20px;">
-              <button id="h_button" type="button" tabindex="0" aria-hidden="false" aria-label="문의하기 버튼" value="문의하기">
+              <button id="path_button" type="submit" tabindex="-1" aria-hidden="true" aria-label="문의하기 버튼" value="문의하기">
                 문의하기
               </button>
-              <button id="path_button" type="submit" tabindex="-1" aria-hidden="true" aria-label="문의하기 버튼" value="문의하기">
+              <button id="h_button" type="button" tabindex="0" aria-hidden="false" aria-label="문의하기 버튼" value="문의하기">
                 문의하기
               </button>
             </td>
@@ -184,7 +184,7 @@
        $('.email_wrap').find('[tabindex]').eq(0).focus();
 
       if(document.getElementById('email_wrap')){
-          var conbox_contentswrap = document.getElementById('email_wrap');
+          var email_wrap = document.getElementById('mail_form');
           // var filter_conbox_contentswrap = document.getElementById('filter-conbox-contentswrap');
           var all_filter_conbox = document.getElementById('all-filter-conbox');
           
@@ -196,23 +196,23 @@
 
             var this_on_focus;
 
-            var con_range = $('.all-filter-conbox, .conbox-contents-view').find('.filter-title-closebtn, .filter-conbox-contentswrap, .email_wrap').find('a[href], area[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button, button:not([disabled]), submit, submit:not([disabled]), iframe, object, embed, *[tabindex], *[contenteditable]');
+            var con_range = $('.all-filter-conbox, .conbox-contents-view, .email_wrap').find('.filter-title-closebtn, .filter-conbox-contentswrap').find('a[href], area[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button, button:not([disabled]), submit, submit:not([disabled]), iframe, object, embed, *[tabindex], *[contenteditable]');
             var con_first = con_range.eq(0);
             var con_last = con_range.eq(con_range.length-1);
             
             var focus_content = 'a[href], area[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button, button:not([disabled]), submit, submit:not([disabled]), iframe, object, embed, *[tabindex], *[contenteditable]';
-            var conbox_content = conbox_contentswrap.querySelectorAll(focus_content);
-            var first_content = conbox_contentswrap.querySelectorAll(focus_content)[0];
-            var last_content = conbox_contentswrap.querySelectorAll(focus_content)[conbox_content.length-1];
-            var first_content_0 = conbox_contentswrap.querySelectorAll(focus_content)[0];
+            var conbox_content = email_wrap.querySelectorAll(focus_content);
+            var first_content = email_wrap.querySelectorAll(focus_content)[0];
+            var last_content = email_wrap.querySelectorAll(focus_content)[conbox_content.length-1];
+            var first_content_0 = email_wrap.querySelectorAll(focus_content)[0];
 
             console.log('last_content = '+conbox_content.length);
 
             this_on_focus = document.activeElement;
             console.log('this_on_focus = '+this_on_focus);
-            if ((e.keyCode===9)&&(this_on_focus==last_content)) {
+            if ((e.keyCode===9 && !e.shiftKey)&&(this_on_focus==last_content)) {
               console.log('pop ride this_1');
-              // first_content.focus();
+              first_content.focus();
               // last_content.focus();
               e.preventDefault();
             }
