@@ -39,6 +39,7 @@
 
         document.addEventListener("DOMContentLoaded", function(){
             e_mail =document.getElementById('email');
+            form_tabindex = document.getElementById('contact_form').querySelectorAll('*[tabindex]');
             e_name = document.getElementById('name');
             e_title = document.getElementById('title');
             message_input = document.getElementById('message');
@@ -72,11 +73,19 @@
                 p_button.click();
                 dimm_filter.classList.remove('on');
               };
+              form_tabindex.forEach(function(item){
+                item.setAttribute('tabindex','-1');
+              });
+              popup_close.setAttribute('tabindex','0');
               popup_close.focus();
             };
             popup_close.addEventListener('click',function(){
               dimm_filter.classList.remove('on');
               popup_content.querySelector('p').innerHTML='';
+              form_tabindex.forEach(function(item){
+                item.setAttribute('tabindex','0');
+              });
+              popup_close.setAttribute('tabindex','-1');
             });
             h_button.addEventListener('click',h_button_click);
 
@@ -96,10 +105,19 @@
                             e_name.value='';
                             e_title.value='';
                             message_input.value='';
+                            form_tabindex.forEach(function(item){
+                              item.setAttribute('tabindex','0');
+                            });
+                            popup_close.setAttribute('tabindex','-1');
                         }, (error) => {
                             // console.log('FAILED...', error);
                             dimm_filter.classList.add('on');
                             popup_content.querySelector('p').innerHTML+='<span>메일 발송에 실패하였습니다.</span><br>';
+                            popup_close.focus();
+                            form_tabindex.forEach(function(item){
+                              item.setAttribute('tabindex','0');
+                            });
+                            popup_close.setAttribute('tabindex','-1');
                             // alert('메일 발송에 실패하였습니다.');
                         });
                 
@@ -156,7 +174,7 @@
         <div class="popup_content">
             <p>
             </p>
-            <button id="popup_close" type="button" tabindex="5" aria-hidden="false" aria-label="확인 버튼" value="확인">
+            <button id="popup_close" type="button" tabindex="-1" aria-hidden="false" aria-label="확인 버튼" value="확인">
                 확인
             </button>
         </div>
