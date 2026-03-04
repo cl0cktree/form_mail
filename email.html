@@ -10,8 +10,7 @@
     <title>문의메일</title>
     <link rel="stylesheet" type="text/css" href="./css/email.css">
     <script type="text/javascript" src="./js/jquery-3.2.1.min.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-    <!-- <script type="text/javascript" src="./js/email.min.js"></script> -->
+    <script type="text/javascript" src="./js/email.min.js"></script>
     
   </head>
  
@@ -38,8 +37,10 @@
       var popup_close;
       var vali;
       var mail_table;
+      var success_mail;
 
         document.addEventListener("DOMContentLoaded", function(){
+            success_mail=null;
             mail_table = document.getElementById('mail_table');
             e_mail =document.getElementById('email');
             form_tabindex = document.getElementById('contact_form').querySelectorAll('*[tabindex]');
@@ -85,13 +86,20 @@
               popup_close.focus();
             };
             popup_close.addEventListener('click',function(){
-              dimm_filter.classList.remove('on');
-              popup_content.querySelector('p').innerHTML='';
-              form_tabindex.forEach(function(item){
-                item.setAttribute('tabindex','0');
-              });
-              popup_close.setAttribute('tabindex','-1');
-              h_button.focus();
+              if(success_mail==true){
+                console.log('--- success_mail = '+success_mail);
+                window.close();
+              }else{
+                console.log('--- success_mail = '+success_mail);
+                dimm_filter.classList.remove('on');
+                popup_content.querySelector('p').innerHTML='';
+                form_tabindex.forEach(function(item){
+                  item.setAttribute('tabindex','0');
+                });
+                popup_close.setAttribute('tabindex','-1');
+                h_button.focus();
+              };
+              
             });
             h_button.addEventListener('click',h_button_click);
             // mail_table.addEventListener('touchstart', function(e){
@@ -116,6 +124,7 @@
                 emailjs.sendForm('clocktree', 'template_n3hysjz', this)
                     .then(() => {
                             // console.log('SUCCESS!');
+                            success_mail=true;
                             dimm_filter.classList.add('on');
                             popup_content.querySelector('p').innerHTML+='<span>메일이 발송 되었습니다.</span><br>';
                             popup_close.focus();
@@ -128,9 +137,11 @@
                               item.setAttribute('tabindex','0');
                             });
                             popup_close.setAttribute('tabindex','-1');
-                            h_button.focus();
+                            // h_button.focus();
+                            popup_close.focus();
                         }, (error) => {
                             // console.log('FAILED...', error);
+                            success_mail=false;
                             dimm_filter.classList.add('on');
                             popup_content.querySelector('p').innerHTML+='<span>메일 발송에 실패하였습니다.</span><br>';
                             popup_close.focus();
@@ -138,7 +149,8 @@
                               item.setAttribute('tabindex','0');
                             });
                             popup_close.setAttribute('tabindex','-1');
-                            h_button.focus();
+                            // h_button.focus();
+                            popup_close.focus();
                             // alert('메일 발송에 실패하였습니다.');
                         });
                 
